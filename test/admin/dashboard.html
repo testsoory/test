@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | إدارة الموقع</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط لوحة التحكم */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1d3557;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --text: #333;
+            --bg: #f0f2f5;
+            --sidebar-bg: #1d3557;
+            --sidebar-text: #f0f0f0;
+            --sidebar-hover: #2a4a7e;
+        }
+
+        /* لوحة التحكم */
+        .admin-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: var(--bg);
+            flex-direction: column;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .admin-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            width: 200px;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            display: none;
+            z-index: 200;
+        }
+
+        .profile-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .profile-dropdown a:hover {
+            background: var(--bg);
+        }
+
+        .admin-profile:hover .profile-dropdown {
+            display: block;
+        }
+
+        .admin-content-container {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            transition: width 0.3s;
+        }
+
+        .admin-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .admin-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem 1.5rem;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            transition: background 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .admin-nav li a:hover {
+            background: var(--sidebar-hover);
+        }
+
+        .admin-nav li.active a {
+            background: var(--sidebar-hover);
+            border-left: 4px solid var(--accent);
+        }
+
+        .admin-nav i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .admin-main {
+            flex: 1;
+            padding: 2rem;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: var(--gray);
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .stat-info h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-info p {
+            color: var(--gray);
+        }
+
+        .quick-links {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .quick-links h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .quick-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1.5rem 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .quick-link i {
+            font-size: 1.8rem;
+        }
+
+        .quick-link span {
+            font-weight: 500;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            display: none;
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+        
+        /* إدارة المستخدمين - التعديل الجديد */
+        .add-user-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .users-list {
+            margin-top: 2rem;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table th, 
+        .users-table td {
+            padding: 0.8rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .users-table th {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+
+        .status {
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .status.active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status.inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-edit-user, 
+        .btn-delete-user {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-left: 5px;
+        }
+
+        .btn-edit-user {
+            color: var(--primary);
+        }
+
+        .btn-delete-user {
+            color: var(--danger);
+        }
+        
+        .btn-add-user {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.8rem 1.2rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-add-user:hover {
+            background: #0d9a6d;
+        }
+        
+        /* تخصيص التصميم */
+        .section {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            background: var(--light);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .section-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-save {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-save:hover {
+            background: var(--secondary);
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .color-option.active {
+            border-color: var(--dark);
+            transform: scale(1.1);
+        }
+        
+        /* إدارة الأزرار */
+        .button-manager {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .btn-remove {
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .admin-nav li span {
+                display: none;
+            }
+            
+            .admin-nav li a {
+                justify-content: center;
+                padding: 1rem;
+            }
+            
+            .admin-nav li.active a {
+                border-left: none;
+                border-bottom: 4px solid var(--accent);
+            }
+            
+            .add-user-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-manager {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-content-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-header {
+                padding: 1rem;
+            }
+            
+            .admin-main {
+                padding: 1rem;
+                padding-top: 20px;
+            }
+            
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* نافذة تعديل المستخدم */
+        .user-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            display: none;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 500px;
+            max-width: 90%;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body class="admin-dashboard" onload="initAdminDashboard()">
+    <!-- شريط التنقل العلوي -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-cogs"></i>
+                <span>لوحة التحكم</span>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="admin-profile">
+                <img src="https://via.placeholder.com/40" alt="صورة المدير">
+                <span>مدير الموقع</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="profile-dropdown">
+                    <a href="#"><i class="fas fa-user"></i> الملف الشخصي</a>
+                    <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="admin-content-container">
+        <!-- القائمة الجانبية المعدلة -->
+        <aside class="sidebar">
+            <nav class="admin-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#" id="dashboardLink">
+                            <i class="fas fa-home"></i>
+                            <span>الصفحة الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="goToSiteLink">
+                            <i class="fas fa-globe"></i>
+                            <span>اذهب إلى الموقع</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="designLink">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>تخصيص التصميم</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="pagesLink">
+                            <i class="fas fa-file-alt"></i>
+                            <span>إدارة الصفحات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="galleryLink">
+                            <i class="fas fa-images"></i>
+                            <span>معرض الصور</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="headerLink">
+                            <i class="fas fa-header"></i>
+                            <span>الهيدر</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="bannerLink">
+                            <i class="fas fa-image"></i>
+                            <span>البانر</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="footerLink">
+                            <i class="fas fa-shoe-prints"></i>
+                            <span>الفوتر</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="settingsLink">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="usersLink">
+                            <i class="fas fa-users"></i>
+                            <span>المستخدمين</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- المحتوى الرئيسي للوحة التحكم (التقارير والروابط فقط) -->
+        <main class="admin-main" id="mainContent">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-tachometer-alt"></i> لوحة التحكم</h1>
+                    <p>مرحباً بك في لوحة تحكم موقعك، من هنا يمكنك إدارة جميع محتويات الموقع</p>
+                </div>
+                
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #4361ee;">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>5,248</h3>
+                            <p>الزيارات اليومية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #4cc9f0;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,248</h3>
+                            <p>المستخدمين الجدد</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #f72585;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>248</h3>
+                            <p>الطلبات الجديدة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #7209b7;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>56</h3>
+                            <p>التعليقات الجديدة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-links">
+                    <h2><i class="fas fa-bolt"></i> روابط سريعة</h2>
+                    <div class="links-grid">
+                        <a href="#" class="quick-link" id="galleryQuickLink">
+                            <i class="fas fa-images"></i>
+                            <span>معرض الصور</span>
+                        </a>
+                        <a href="#" class="quick-link" id="pagesQuickLink">
+                            <i class="fas fa-file-alt"></i>
+                            <span>إدارة الصفحات</span>
+                        </a>
+                        <a href="#" class="quick-link" id="usersQuickLink">
+                            <i class="fas fa-users"></i>
+                            <span>إدارة المستخدمين</span>
+                        </a>
+                        <a href="#" class="quick-link" id="settingsQuickLink">
+                            <i class="fas fa-cog"></i>
+                            <span>إعدادات الموقع</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- قسم تخصيص التصميم (مخفي افتراضيًا) -->
+        <div id="designSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-paint-brush"></i> تخصيص التصميم</h1>
+                    <p>من هنا يمكنك تخصيص ألوان وأنماط الموقع</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-palette"></i> تخصيص التصميم</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>اللون الرئيسي:</label>
+                            <div class="color-picker">
+                                <div class="color-option active" style="background: #4361ee;" data-color="#4361ee"></div>
+                                <div class="color-option" style="background: #f72585;" data-color="#f72585"></div>
+                                <div class="color-option" style="background: #4cc9f0;" data-color="#4cc9f0"></div>
+                                <div class="color-option" style="background: #7209b7;" data-color="#7209b7"></div>
+                                <div class="color-option" style="background: #2ec4b6;" data-color="#2ec4b6"></div>
+                                <div class="color-option" style="background: #ff9f1c;" data-color="#ff9f1c"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>نمط التصميم</label>
+                            <select class="form-control">
+                                <option>فوتح</option>
+                                <option>داكن</option>
+                                <option>مختلط</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>نوع الخط</label>
+                            <select class="form-control">
+                                <option>Droid Arabic</option>
+                                <option>Noto Sans Arabic</option>
+                                <option>El Messiri</option>
+                                <option>Tajawal</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn-save" id="saveDesign">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم إدارة الصفحات -->
+        <div id="pagesSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-file-alt"></i> إدارة الصفحات</h1>
+                    <p>من هنا يمكنك إضافة وتعديل وحذف صفحات الموقع</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-plus-circle"></i> إضافة صفحة جديدة</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>عنوان الصفحة</label>
+                            <input type="text" class="form-control" id="pageTitle" placeholder="أدخل عنوان الصفحة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>محتوى الصفحة</label>
+                            <textarea class="form-control" rows="8" placeholder="أدخل محتوى الصفحة"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>رابط الصفحة</label>
+                            <input type="text" class="form-control" id="pageSlug" placeholder="أدخل رابط الصفحة">
+                        </div>
+                        
+                        <button class="btn-save">
+                            <i class="fas fa-save"></i> حفظ الصفحة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم معرض الصور -->
+        <div id="gallerySection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-images"></i> معرض الصور</h1>
+                    <p>من هنا يمكنك إدارة جميع صور الموقع</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-upload"></i> رفع صورة جديدة</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>اختر صورة للرفع</label>
+                            <input type="file" class="form-control" id="imageUpload">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>وصف الصورة (اختياري)</label>
+                            <input type="text" class="form-control" placeholder="أدخل وصف للصورة">
+                        </div>
+                        
+                        <button class="btn-save">
+                            <i class="fas fa-save"></i> حفظ الصورة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم إدارة الهيدر -->
+        <div id="headerSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-header"></i> إدارة الهيدر</h1>
+                    <p>من هنا يمكنك تعديل شريط التنقل العلوي</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-image"></i> تعديل اللوجو</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>صورة اللوجو</label>
+                            <input type="file" class="form-control" id="logoUpload">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>اسم الموقع</label>
+                            <input type="text" class="form-control" value="شركتي المتميزة">
+                        </div>
+                        
+                        <button class="btn-save" id="saveLogo">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-link"></i> الأزرار الرئيسية</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>إدارة الأزرار</label>
+                            <div id="headerButtonsContainer">
+                                <div class="button-manager">
+                                    <input type="text" class="form-control" value="الرئيسية">
+                                    <input type="text" class="form-control" value="#">
+                                    <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="button-manager">
+                                    <input type="text" class="form-control" value="من نحن">
+                                    <input type="text" class="form-control" value="#">
+                                    <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="button-manager">
+                                    <input type="text" class="form-control" value="الخدمات">
+                                    <input type="text" class="form-control" value="#">
+                                    <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <button class="btn-add-user" id="addHeaderButton" style="margin-top: 15px;">
+                                <i class="fas fa-plus"></i> إضافة زر جديد
+                            </button>
+                        </div>
+                        
+                        <button class="btn-save" id="saveHeaderButtons">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم إدارة البانر -->
+        <div id="bannerSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-image"></i> إدارة البانر</h1>
+                    <p>من هنا يمكنك تعديل البانر الرئيسي</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-sliders-h"></i> تعديل البانر</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>صورة الخلفية</label>
+                            <input type="file" class="form-control" id="bannerUpload">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>العنوان الرئيسي</label>
+                            <input type="text" class="form-control" value="مرحباً بكم في موقعنا الإلكتروني">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea class="form-control" rows="3">نقدم لكم أفضل الحلول التقنية والخدمات المتميزة التي تلبي احتياجات عملك وتطوره</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>نص زر الدعوة</label>
+                            <input type="text" class="form-control" value="اكتشف خدماتنا">
+                        </div>
+                        
+                        <button class="btn-save" id="saveBanner">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم إدارة الفوتر -->
+        <div id="footerSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-shoe-prints"></i> إدارة الفوتر</h1>
+                    <p>من هنا يمكنك تعديل الفوتر (التذييل)</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-edit"></i> تعديل محتوى الفوتر</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>حقوق النشر</label>
+                            <input type="text" class="form-control" value="جميع الحقوق محفوظة &copy; 2023 شركتي المتميزة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea class="form-control" rows="3">نحن شركة رائدة في مجال الحلول التقنية، نسعى لتقديم أفضل الخدمات لعملائنا بجودة عالية وأسعار مناسبة.</textarea>
+                        </div>
+                        
+                        <button class="btn-save" id="saveFooter">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الإعدادات -->
+        <div id="settingsSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-cog"></i> الإعدادات</h1>
+                    <p>من هنا يمكنك تعديل إعدادات الموقع العامة</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-home"></i> الصفحة الرئيسية</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <label>عنوان البانر الرئيسي</label>
+                            <input type="text" class="form-control" value="مرحباً بكم في موقعنا الإلكتروني">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>وصف البانر</label>
+                            <textarea class="form-control" rows="3">نقدم لكم أفضل الحلول التقنية والخدمات المتميزة التي تلبي احتياجات عملك وتطوره</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>صورة الخلفية</label>
+                            <input type="file" class="form-control" id="homeBannerUpload">
+                        </div>
+                        
+                        <button class="btn-save" id="saveHomeSettings">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم إدارة المستخدمين -->
+        <div id="usersSection" class="admin-main" style="display:none;">
+            <div class="admin-container">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-users"></i> إدارة المستخدمين</h1>
+                    <p>من هنا يمكنك إضافة وتعديل وحذف حسابات المستخدمين</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group">
+                            <div class="add-user-form">
+                                <input type="text" class="form-control" id="newUsername" placeholder="اسم المستخدم">
+                                <input type="password" class="form-control" id="newPassword" placeholder="كلمة المرور">
+                                <select class="form-control" id="newUserRole">
+                                    <option value="admin">مدير كامل</option>
+                                    <option value="editor">محرر</option>
+                                    <option value="author">ناشر</option>
+                                </select>
+                                <button class="btn-add-user">
+                                    <i class="fas fa-plus"></i> إضافة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-users"></i> قائمة المستخدمين</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="users-list">
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>اسم المستخدم</th>
+                                        <th>الدور</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>admin</td>
+                                        <td>مدير كامل</td>
+                                        <td><span class="status active">نشط</span></td>
+                                        <td>
+                                            <button class="btn-edit-user"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-delete-user"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>editor1</td>
+                                        <td>محرر</td>
+                                        <td><span class="status active">نشط</span></td>
+                                        <td>
+                                            <button class="btn-edit-user"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-delete-user"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>author1</td>
+                                        <td>ناشر</td>
+                                        <td><span class="status inactive">غير نشط</span></td>
+                                        <td>
+                                            <button class="btn-edit-user"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-delete-user"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- نافذة تعديل المستخدم -->
+        <div class="user-modal" id="userModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-user-edit"></i> تعديل المستخدم</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="editUserForm">
+                    <div class="form-group">
+                        <label>اسم المستخدم</label>
+                        <input type="text" class="form-control" id="editUsername" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>كلمة المرور الجديدة</label>
+                        <input type="password" class="form-control" id="editPassword" placeholder="اتركه فارغًا للحفاظ على كلمة المرور الحالية">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>تأكيد كلمة المرور</label>
+                        <input type="password" class="form-control" id="editConfirmPassword" placeholder="تأكيد كلمة المرور الجديدة">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الدور</label>
+                        <select class="form-control" id="editUserRole">
+                            <option value="admin">مدير كامل</option>
+                            <option value="editor">محرر</option>
+                            <option value="author">ناشر</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الحالة</label>
+                        <select class="form-control" id="editUserStatus">
+                            <option value="active">نشط</option>
+                            <option value="inactive">غير نشط</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="btn-save" style="background: var(--gray);" id="cancelEdit">إلغاء</button>
+                        <button type="submit" class="btn-save">حفظ التغييرات</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // تهيئة لوحة التحكم عند التحميل
+        function initAdminDashboard() {
+            console.log('تم تحميل لوحة التحكم بنجاح');
+            
+            // التحقق من تسجيل الدخول
+            checkLoginStatus();
+            
+            // تفعيل وظائف لوحة التحكم
+            setupAdminFunctions();
+            
+            // تفعيل أزرار الحفظ
+            setupSaveButtons();
+        }
+        
+        // تفعيل أزرار الحفظ
+        function setupSaveButtons() {
+            document.querySelectorAll('.btn-save').forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.section');
+                    const sectionTitle = section.querySelector('.section-header h2').textContent;
+                    showNotification(`تم حفظ تغييرات قسم "${sectionTitle}" بنجاح!`);
+                });
+            });
+        }
+
+        // التحقق من حالة تسجيل الدخول
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // تهيئة وظائف لوحة التحكم
+        function setupAdminFunctions() {
+            // تفعيل القائمة الجانبية
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            // تفعيل القائمة المنسدلة للملف الشخصي
+            const adminProfile = document.querySelector('.admin-profile');
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            
+            if (adminProfile && profileDropdown) {
+                adminProfile.addEventListener('click', function() {
+                    profileDropdown.classList.toggle('show');
+                });
+            }
+            
+            // تفعيل زر تسجيل الخروج
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('adminLoggedIn');
+                    window.location.href = 'login.html';
+                });
+            }
+            
+            // تفعيل اختيار الألوان
+            const colorOptions = document.querySelectorAll('.color-option');
+            
+            if (colorOptions.length > 0) {
+                colorOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        colorOptions.forEach(o => o.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+            
+            // تفعيل زر "اذهب إلى الموقع"
+            const goToSiteLinks = document.querySelectorAll('[id^="goToSiteLink"]');
+            goToSiteLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const baseUrl = window.location.href.split('/admin/')[0];
+                    window.location.href = baseUrl + '/index.html';
+                });
+            });
+            
+            // تفعيل إدارة المستخدمين
+            const addUserBtn = document.querySelector('.btn-add-user');
+            if (addUserBtn) {
+                addUserBtn.addEventListener('click', function() {
+                    const username = document.getElementById('newUsername').value;
+                    const password = document.getElementById('newPassword').value;
+                    const role = document.getElementById('newUserRole').value;
+                    
+                    if (!username || !password) {
+                        showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                        return;
+                    }
+                    
+                    // إضافة المستخدم الجديد إلى الجدول
+                    const usersTable = document.querySelector('.users-table tbody');
+                    const newRow = document.createElement('tr');
+                    
+                    newRow.innerHTML = `
+                        <td>${username}</td>
+                        <td>${getRoleName(role)}</td>
+                        <td><span class="status active">نشط</span></td>
+                        <td>
+                            <button class="btn-edit-user"><i class="fas fa-edit"></i></button>
+                            <button class="btn-delete-user"><i class="fas fa-trash"></i></button>
+                        </td>
+                    `;
+                    
+                    usersTable.appendChild(newRow);
+                    
+                    // إضافة مستمعات الأحداث للأزرار الجديدة
+                    setupUserActions(newRow);
+                    
+                    // إظهار الإشعار
+                    showNotification(`تم إضافة المستخدم ${username} بنجاح!`);
+                    
+                    // تفريغ الحقول
+                    document.getElementById('newUsername').value = '';
+                    document.getElementById('newPassword').value = '';
+                });
+            }
+            
+            // تفعيل أزرار تحرير وحذف المستخدمين
+            setupUserActions();
+            
+            // تفعيل التبديل بين الأقسام
+            const sections = {
+                dashboardLink: 'mainContent',
+                designLink: 'designSection',
+                pagesLink: 'pagesSection',
+                galleryLink: 'gallerySection',
+                headerLink: 'headerSection',
+                bannerLink: 'bannerSection',
+                footerLink: 'footerSection',
+                settingsLink: 'settingsSection',
+                usersLink: 'usersSection'
+            };
+            
+            // إخفاء جميع الأقسام وإظهار القسم الرئيسي
+            function hideAllSections() {
+                document.getElementById('designSection').style.display = 'none';
+                document.getElementById('pagesSection').style.display = 'none';
+                document.getElementById('gallerySection').style.display = 'none';
+                document.getElementById('headerSection').style.display = 'none';
+                document.getElementById('bannerSection').style.display = 'none';
+                document.getElementById('footerSection').style.display = 'none';
+                document.getElementById('settingsSection').style.display = 'none';
+                document.getElementById('usersSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+            }
+            
+            // تفعيل الروابط
+            for (const [linkId, sectionId] of Object.entries(sections)) {
+                const link = document.getElementById(linkId);
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        hideAllSections();
+                        document.getElementById(sectionId).style.display = 'block';
+                        
+                        // تحديث القائمة الجانبية
+                        document.querySelectorAll('.admin-nav li').forEach(li => {
+                            li.classList.remove('active');
+                        });
+                        this.parentElement.classList.add('active');
+                    });
+                }
+            }
+            
+            // تفعيل الروابط السريعة
+            const quickLinks = {
+                galleryQuickLink: 'gallerySection',
+                pagesQuickLink: 'pagesSection',
+                usersQuickLink: 'usersSection',
+                settingsQuickLink: 'settingsSection'
+            };
+            
+            for (const [linkId, sectionId] of Object.entries(quickLinks)) {
+                const link = document.getElementById(linkId);
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        hideAllSections();
+                        document.getElementById(sectionId).style.display = 'block';
+                        
+                        // تحديث القائمة الجانبية
+                        document.querySelectorAll('.admin-nav li').forEach(li => {
+                            li.classList.remove('active');
+                        });
+                        document.getElementById(linkId.replace('QuickLink', 'Link')).parentElement.classList.add('active');
+                    });
+                }
+            }
+            
+            // تفعيل إضافة أزرار الهيدر
+            const addHeaderButton = document.getElementById('addHeaderButton');
+            if (addHeaderButton) {
+                addHeaderButton.addEventListener('click', function() {
+                    const container = document.getElementById('headerButtonsContainer');
+                    const newButton = document.createElement('div');
+                    newButton.className = 'button-manager';
+                    newButton.innerHTML = `
+                        <input type="text" class="form-control" placeholder="اسم الزر">
+                        <input type="text" class="form-control" placeholder="الرابط أو القسم">
+                        <button class="btn-remove"><i class="fas fa-times"></i></button>
+                    `;
+                    container.appendChild(newButton);
+                    
+                    // تفعيل زر الحذف
+                    newButton.querySelector('.btn-remove').addEventListener('click', function() {
+                        newButton.remove();
+                    });
+                });
+            }
+            
+            // تفعيل أزرار حذف الهيدر الموجودة
+            document.querySelectorAll('.btn-remove').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                });
+            });
+            
+            // تفعيل حفظ أزرار الهيدر
+            const saveHeaderButtons = document.getElementById('saveHeaderButtons');
+            if (saveHeaderButtons) {
+                saveHeaderButtons.addEventListener('click', function() {
+                    const buttonsContainer = document.getElementById('headerButtonsContainer');
+                    const buttonManagers = buttonsContainer.querySelectorAll('.button-manager');
+                    const buttonsData = [];
+                    
+                    buttonManagers.forEach(manager => {
+                        const inputs = manager.querySelectorAll('input');
+                        if (inputs.length >= 2) {
+                            buttonsData.push({
+                                text: inputs[0].value,
+                                url: inputs[1].value
+                            });
+                        }
+                    });
+                    
+                    // حفظ البيانات في localStorage (أو إرسالها إلى الخادم)
+                    localStorage.setItem('headerButtons', JSON.stringify(buttonsData));
+                    
+                    showNotification('تم حفظ أزرار الهيدر بنجاح!');
+                });
+            }
+        }
+        
+        // وظيفة للحصول على اسم الدور
+        function getRoleName(roleKey) {
+            const roles = {
+                'admin': 'مدير كامل',
+                'editor': 'محرر',
+                'author': 'ناشر'
+            };
+            return roles[roleKey] || roleKey;
+        }
+        
+        // تهيئة وظائف أزرار المستخدمين
+        function setupUserActions(row = null) {
+            const editButtons = row ? 
+                row.querySelectorAll('.btn-edit-user') : 
+                document.querySelectorAll('.btn-edit-user');
+                
+            const deleteButtons = row ? 
+                row.querySelectorAll('.btn-delete-user') : 
+                document.querySelectorAll('.btn-delete-user');
+            
+            // تفعيل أزرار التحرير
+            editButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const username = row.cells[0].textContent;
+                    showNotification(`ستتمكن قريباً من تعديل المستخدم: ${username}`);
+                });
+            });
+            
+            // تفعيل أزرار الحذف
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const username = row.cells[0].textContent;
+                    
+                    if (confirm(`هل أنت متأكد من رغبتك في حذف المستخدم ${username}؟`)) {
+                        row.remove();
+                        showNotification(`تم حذف المستخدم ${username} بنجاح`);
+                    }
+                });
+            });
+        }
+
+        // وظيفة لعرض الإشعارات
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // وظيفة لحماية المسارات
+        function protectAdminRoutes() {
+            const adminPages = ['dashboard.html', 'login.html'];
+            const currentPage = window.location.pathname.split('/').pop();
+            
+            if (adminPages.includes(currentPage)) {
+                // التحقق من حالة تسجيل الدخول
+                const isLoginPage = currentPage === 'login.html';
+                const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+                
+                if (isLoginPage && isLoggedIn) {
+                    window.location.href = 'dashboard.html';
+                } else if (!isLoginPage && !isLoggedIn) {
+                    window.location.href = 'login.html';
+                }
+            }
+        }
+
+        // استدعاء وظيفة حماية المسارات عند تحميل الصفحة
+        protectAdminRoutes();
+    </script>
+</body>
+</html>
