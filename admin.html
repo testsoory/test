@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محاميكم - لوحة التحكم الإدارية</title>
     
-    <!-- تحسينات SEO متقدمة -->
-    <meta name="description" content="لوحة التحكم الإدارية لمنصة محاميكم - إدارة الاستشارات والمحتوى">
-    <meta name="author" content="منصة محاميكم">
-    
     <!-- الخطوط -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,6 +82,7 @@
         
         .admin-nav-links li {
             margin: 0 10px;
+            position: relative;
         }
         
         .admin-nav-links a {
@@ -96,11 +93,42 @@
             font-size: 1rem;
             padding: 8px 12px;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
         }
         
         .admin-nav-links a:hover, .admin-nav-links a.active {
             color: white;
             background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .dropdown-menu a {
+            color: var(--dark);
+            padding: 10px 15px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        .admin-nav-links li:hover .dropdown-menu {
+            display: block;
         }
         
         .admin-logout {
@@ -111,6 +139,9 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .admin-logout:hover {
@@ -330,52 +361,23 @@
             background-color: #b8daff;
         }
         
-        /* نموذج تسجيل الدخول */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 20px;
-        }
-        
-        .login-card {
+        /* نماذج إدارة الأقسام */
+        .section-form {
             background: white;
             border-radius: 10px;
-            width: 100%;
-            max-width: 450px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
         }
         
-        .login-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-logo .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .login-logo .logo svg {
-            margin-left: 10px;
-            width: 30px;
-            height: 30px;
-            fill: var(--accent);
-        }
-        
-        .login-logo .logo-sub {
-            color: var(--gray);
-            margin-top: 5px;
-            font-size: 1rem;
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
         }
         
         .form-group {
+            flex: 1;
             margin-bottom: 20px;
         }
         
@@ -401,12 +403,16 @@
             box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.15);
         }
         
-        .login-btn {
-            width: 100%;
-            padding: 12px;
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
             background-color: var(--primary);
             color: white;
             border: none;
+            padding: 12px 25px;
             border-radius: 5px;
             font-size: 1rem;
             font-weight: 600;
@@ -414,25 +420,11 @@
             transition: background-color 0.3s;
         }
         
-        .login-btn:hover {
+        .form-submit:hover {
             background-color: #0d2d8f;
         }
         
-        .login-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: var(--gray);
-        }
-        
-        .login-footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-        
+        /* تنسيقات إضافية */
         .admin-panel {
             display: none;
         }
@@ -441,7 +433,36 @@
             display: block;
         }
         
+        .section-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px dashed #ddd;
+        }
+        
+        .section-preview h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .preview-content {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        
         /* التجاوبية */
+        @media (max-width: 992px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
         @media (max-width: 768px) {
             .admin-nav-container {
                 flex-direction: column;
@@ -465,13 +486,15 @@
                 display: block;
                 overflow-x: auto;
             }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
         
         @media (max-width: 480px) {
-            .login-card {
-                padding: 25px;
-            }
-            
             .action-buttons {
                 flex-direction: column;
             }
@@ -529,8 +552,17 @@
                 <ul class="admin-nav-links">
                     <li><a href="#" class="active">الرئيسية</a></li>
                     <li><a href="#">الاستشارات</a></li>
+                    <li>
+                        <a href="#">إدارة المحتوى <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></a>
+                        <div class="dropdown-menu">
+                            <a href="#header-management">الهيدر</a>
+                            <a href="#footer-management">الفوتر</a>
+                            <a href="#services-management">الخدمات</a>
+                            <a href="#testimonials-management">آراء العملاء</a>
+                            <a href="#tips-management">النصائح القانونية</a>
+                        </div>
+                    </li>
                     <li><a href="#">المستخدمين</a></li>
-                    <li><a href="#">المحتوى</a></li>
                     <li><a href="#">الإحصائيات</a></li>
                 </ul>
                 
@@ -600,87 +632,180 @@
                     </div>
                 </div>
                 
-                <!-- إدارة الاستشارات -->
-                <div class="content-management">
+                <!-- إدارة الهيدر -->
+                <div class="section-form" id="header-management">
                     <div class="section-header">
-                        <h2>الاستشارات الواردة</h2>
-                        <button class="btn btn-primary">استشارة جديدة</button>
+                        <h2>إدارة قسم الهيدر</h2>
+                    </div>
+                    
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="siteTitle">عنوان الموقع</label>
+                                <input type="text" id="siteTitle" class="form-control" value="محاميكم - الاستشارات القانونية الأولى في العراق">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="siteLogo">شعار الموقع</label>
+                                <input type="file" id="siteLogo" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="navLinks">روابط التنقل (مفصولة بفاصلة)</label>
+                            <input type="text" id="navLinks" class="form-control" value="الرئيسية, الخدمات, كيف تعمل, آراء العملاء, نصائح قانونية, اتصل بنا">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ctaButton">زر النداء إلى العمل</label>
+                            <input type="text" id="ctaButton" class="form-control" value="ابدأ استشارتك">
+                        </div>
+                        
+                        <button type="submit" class="form-submit">حفظ التغييرات</button>
+                    </form>
+                    
+                    <div class="section-preview">
+                        <h3>معاينة الهيدر</h3>
+                        <div class="preview-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center;">
+                                    <div style="width: 40px; height: 40px; background: #1a3a8f; border-radius: 5px; margin-left: 10px;"></div>
+                                    <div>
+                                        <div style="font-weight: bold; color: #1a3a8f;">محاميكم</div>
+                                        <div style="font-size: 0.8rem; color: #6c757d;">MohamyCom</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 15px;">
+                                    <a href="#" style="color: #212529; text-decoration: none;">الرئيسية</a>
+                                    <a href="#" style="color: #212529; text-decoration: none;">الخدمات</a>
+                                    <a href="#" style="color: #212529; text-decoration: none;">كيف تعمل</a>
+                                </div>
+                                <button style="background: #1a3a8f; color: white; border: none; padding: 8px 15px; border-radius: 20px;">ابدأ استشارتك</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إدارة الفوتر -->
+                <div class="section-form" id="footer-management">
+                    <div class="section-header">
+                        <h2>إدارة قسم الفوتر</h2>
+                    </div>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="footerAbout">معلومات عن المنصة</label>
+                            <textarea id="footerAbout" class="form-control">منصة رائدة في تقديم الاستشارات القانونية عبر الإنترنت، تهدف إلى توفير خدمات قانونية متميزة بأسعار مناسبة للجميع في العراق.</textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="footerEmail">البريد الإلكتروني</label>
+                                <input type="email" id="footerEmail" class="form-control" value="mohamycom@proton.me">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="footerTelegram">تيليجرام</label>
+                                <input type="text" id="footerTelegram" class="form-control" value="@mohamycom">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="copyrightText">نص حقوق النشر</label>
+                            <input type="text" id="copyrightText" class="form-control" value="جميع الحقوق محفوظة © منصة محاميكم 2025">
+                        </div>
+                        
+                        <button type="submit" class="form-submit">حفظ التغييرات</button>
+                    </form>
+                    
+                    <div class="section-preview">
+                        <h3>معاينة الفوتر</h3>
+                        <div class="preview-content">
+                            <div style="background: #212529; color: white; padding: 20px; border-radius: 5px;">
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                                    <div>
+                                        <h4 style="margin-bottom: 15px; position: relative; padding-bottom: 10px;">عن محاميكم</h4>
+                                        <p style="color: #ced4da; font-size: 0.9rem;">منصة رائدة في تقديم الاستشارات القانونية عبر الإنترنت، تهدف إلى توفير خدمات قانونية متميزة بأسعار مناسبة للجميع في العراق.</p>
+                                    </div>
+                                    <div>
+                                        <h4 style="margin-bottom: 15px; position: relative; padding-bottom: 10px;">روابط سريعة</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li style="margin-bottom: 10px;"><a href="#" style="color: #ced4da; text-decoration: none;">الرئيسية</a></li>
+                                            <li style="margin-bottom: 10px;"><a href="#" style="color: #ced4da; text-decoration: none;">الخدمات</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; color: #adb5bd;">
+                                    جميع الحقوق محفوظة © منصة محاميكم 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إدارة الخدمات -->
+                <div class="section-form" id="services-management">
+                    <div class="section-header">
+                        <h2>إدارة قسم الخدمات</h2>
+                        <button class="btn btn-primary">إضافة خدمة جديدة</button>
                     </div>
                     
                     <table class="content-table">
                         <thead>
                             <tr>
-                                <th>رقم الاستشارة</th>
-                                <th>الاسم</th>
+                                <th>اسم الخدمة</th>
                                 <th>التصنيف</th>
-                                <th>التاريخ</th>
+                                <th>الوصف</th>
                                 <th>الحالة</th>
                                 <th>الإجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#2458</td>
-                                <td>علي حسن</td>
-                                <td>قانون عقاري</td>
-                                <td>4 يوليو 2025</td>
-                                <td><span class="status-badge status-pending">قيد المراجعة</span></td>
+                                <td>القانون العقاري</td>
+                                <td>خدمات أساسية</td>
+                                <td>حلول قانونية متكاملة لجميع القضايا العقارية</td>
+                                <td><span class="status-badge status-completed">نشطة</span></td>
                                 <td>
                                     <div class="action-buttons">
-                                        <button class="action-btn view-btn">عرض</button>
                                         <button class="action-btn edit-btn">تعديل</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#2457</td>
-                                <td>ليلى عبد الله</td>
-                                <td>قانون أسرة</td>
-                                <td>3 يوليو 2025</td>
-                                <td><span class="status-badge status-completed">مكتملة</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="action-btn view-btn">عرض</button>
-                                        <button class="action-btn edit-btn">تعديل</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#2456</td>
-                                <td>محمد كاظم</td>
-                                <td>قانون عمل</td>
-                                <td>3 يوليو 2025</td>
-                                <td><span class="status-badge status-pending">قيد المراجعة</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="action-btn view-btn">عرض</button>
-                                        <button class="action-btn edit-btn">تعديل</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#2455</td>
-                                <td>زهراء أحمد</td>
-                                <td>قانون تجاري</td>
-                                <td>2 يوليو 2025</td>
-                                <td><span class="status-badge status-rejected">ملغاة</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="action-btn view-btn">عرض</button>
                                         <button class="action-btn delete-btn">حذف</button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>#2454</td>
-                                <td>حسين عباس</td>
-                                <td>قانون عقاري</td>
-                                <td>1 يوليو 2025</td>
-                                <td><span class="status-badge status-completed">مكتملة</span></td>
+                                <td>قانون الأسرة</td>
+                                <td>خدمات أساسية</td>
+                                <td>حلول قانونية متكاملة لجميع قضايا الأسرة</td>
+                                <td><span class="status-badge status-completed">نشطة</span></td>
                                 <td>
                                     <div class="action-buttons">
-                                        <button class="action-btn view-btn">عرض</button>
                                         <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>قانون العمل</td>
+                                <td>خدمات أساسية</td>
+                                <td>حلول قانونية متكاملة لقضايا العمل</td>
+                                <td><span class="status-badge status-completed">نشطة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>القانون التجاري</td>
+                                <td>خدمات متقدمة</td>
+                                <td>حلول قانونية للقضايا التجارية</td>
+                                <td><span class="status-badge status-pending">تحت التطوير</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
                                     </div>
                                 </td>
                             </tr>
@@ -688,11 +813,11 @@
                     </table>
                 </div>
                 
-                <!-- إدارة المحتوى -->
-                <div class="content-management">
+                <!-- إدارة النصائح القانونية -->
+                <div class="section-form" id="tips-management">
                     <div class="section-header">
-                        <h2>إدارة المقالات والنصائح</h2>
-                        <button class="btn btn-secondary">مقال جديد</button>
+                        <h2>إدارة النصائح القانونية</h2>
+                        <button class="btn btn-secondary">إضافة نصيحة جديدة</button>
                     </div>
                     
                     <table class="content-table">
@@ -735,30 +860,6 @@
                                 <td>قانون عقاري</td>
                                 <td>25 يونيو 2025</td>
                                 <td>3,127</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="action-btn edit-btn">تعديل</button>
-                                        <button class="action-btn delete-btn">حذف</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>دليل الميراث في القانون العراقي</td>
-                                <td>قانون الأسرة</td>
-                                <td>20 يونيو 2025</td>
-                                <td>4,562</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="action-btn edit-btn">تعديل</button>
-                                        <button class="action-btn delete-btn">حذف</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>كيفية التعامل مع المخالفات المرورية</td>
-                                <td>قانون جزائي</td>
-                                <td>15 يونيو 2025</td>
-                                <td>2,987</td>
                                 <td>
                                     <div class="action-buttons">
                                         <button class="action-btn edit-btn">تعديل</button>
@@ -821,15 +922,19 @@
         });
         
         // تنعيم التمرير عند النقر على الروابط
-        document.querySelectorAll('.admin-nav-links a').forEach(anchor => {
+        document.querySelectorAll('.admin-nav-links a, .dropdown-menu a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
