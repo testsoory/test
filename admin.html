@@ -3,24 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم</title>
+    <title>لوحة التحكم - محاميكم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     <div class="admin-container">
-        <main class="main-content">
-            <div class="content-body">
-                <div class="editor-form">
-                    <div class="form-group">
-                        <label>نص الشعار:</label>
-                        <input type="text" id="logo-text" value="محاميكم">
-                    </div>
-                    <button class="btn-save">حفظ التغييرات</button>
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="admin-logo">
+                    <i class="fas fa-scale-balanced"></i>
+                    <h2>محاميكم</h2>
                 </div>
             </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                    <li><a href="#header"><i class="fas fa-header"></i> الهيدر</a></li>
+                    <li><a href="#hero"><i class="fas fa-image"></i> البانر</a></li>
+                    <li><a href="#services"><i class="fas fa-cogs"></i> الخدمات</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-comments"></i> آراء العملاء</a></li>
+                    <li><a href="#legal-tips"><i class="fas fa-lightbulb"></i> نصائح قانونية</a></li>
+                    <li><a href="#footer"><i class="fas fa-shoe-prints"></i> الفوتر</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> الإعدادات</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+        
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>لوحة التحكم</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="admin-profile">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <span>المسؤول</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-body">
+                <!-- لوحة التحكم -->
+                <div id="dashboard" class="section-content active">
+                    <h2>مرحبًا بك في لوحة التحكم</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1,245</h3>
+                                <p>زيارات اليوم</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>87</h3>
+                                <p>عملاء جدد</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>32</h3>
+                                <p>استشارات جديدة</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>+24%</h3>
+                                <p>نمو الموقع</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activities">
+                        <h3>آخر التحديثات</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-edit"></i>
+                                <span>تم تحديث قسم الخدمات</span>
+                                <small>منذ 2 ساعة</small>
+                            </li>
+                            <li>
+                                <i class="fas fa-plus-circle"></i>
+                                <span>تمت إضافة شهادة عميل جديد</span>
+                                <small>منذ 5 ساعات</small>
+                            </li>
+                            <li>
+                                <i class="fas fa-image"></i>
+                                <span>تم تغيير صورة البانر الرئيسي</span>
+                                <small>منذ يوم واحد</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- تحرير الهيدر -->
+                <div id="header" class="section-content">
+                    <h2>تحرير الهيدر</h2>
+                    <div class="editor-container">
+                        <div class="editor-preview">
+                            <h4>معاينة الهيدر</h4>
+                            <div class="preview-box">
+                                <div class="preview-header">
+                                    <div class="preview-logo">
+                                        <i class="fas fa-scale-balanced"></i>
+                                        <span id="preview-logo-text">محاميكم</span>
+                                    </div>
+                                    <ul class="preview-nav">
+                                        <li><a href="#">الرئيسية</a></li>
+                                        <li><a href="#">الخدمات</a></li>
+                                        <li><a href="#">كيف يعمل</a></li>
+                                        <li><a href="#">اتصل بنا</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="editor-form">
+                            <h4>تعديل المحتوى</h4>
+                            <form class="form-section">
+                                <div class="form-group">
+                                    <label>شعار الموقع (لوجو)</label>
+                                    <div class="image-upload">
+                                        <img id="logo-preview" src="#" alt="الشعار الحالي">
+                                        <input type="file" id="logo-upload" accept="image/*">
+                                        <button type="button" class="btn-upload">تغيير الصورة</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>نص الشعار</label>
+                                    <input type="text" id="logo-text" value="محاميكم" oninput="updatePreview()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>روابط القائمة</label>
+                                    <div class="menu-items">
+                                        <div class="menu-item">
+                                            <input type="text" value="الرئيسية" placeholder="نص الرابط">
+                                            <input type="text" value="#" placeholder="الرابط">
+                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                        </div>
+                                        <div class="menu-item">
+                                            <input type="text" value="الخدمات" placeholder="نص الرابط">
+                                            <input type="text" value="#services" placeholder="الرابط">
+                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                        </div>
+                                        <div class="menu-item">
+                                            <input type="text" value="اتصل بنا" placeholder="نص الرابط">
+                                            <input type="text" value="#contact" placeholder="الرابط">
+                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-add-item">إضافة رابط جديد</button>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-save" onclick="saveSettings()">حفظ التغييرات</button>
+                                    <button type="reset" class="btn-reset">إعادة تعيين</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إعدادات النظام -->
+                <div id="settings" class="section-content">
+                    <h2>إعدادات النظام</h2>
+                    <div class="settings-container">
+                        <div class="settings-tabs">
+                            <button class="tab-btn active">عام</button>
+                            <button class="tab-btn">المستخدمين</button>
+                            <button class="tab-btn">الأمان</button>
+                        </div>
+                        
+                        <div class="settings-content">
+                            <form class="form-section">
+                                <div class="form-group">
+                                    <label>اسم الموقع</label>
+                                    <input type="text" value="محاميكم">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>وصف الموقع</label>
+                                    <textarea>استشارات قانونية فورية من محامين متخصصين في العراق. حلول قانونية في العقارات، الأسرة، العمل. متاح 24 ساعة طوال الأسبوع.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>وضع الصيانة</label>
+                                    <div class="switch-container">
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <span>غير مفعل</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-save">حفظ الإعدادات</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="content-footer">
+                <p>نظام إدارة موقع محاميكم © 2025 - الإصدار 2.0</p>
+            </footer>
         </main>
     </div>
-    <script src="js/api.js"></script>
+    
     <script src="js/admin.js"></script>
 </body>
 </html>

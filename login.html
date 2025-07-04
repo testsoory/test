@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
+    <title>تسجيل الدخول - محاميكم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     <div class="login-container">
-        <form id="login-form">
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-scale-balanced"></i>
+                <span>محاميكم</span>
+            </div>
+            <h1>لوحة التحكم الإدارية</h1>
+        </div>
+        
+        <form class="login-form" id="login-form">
             <div class="form-group">
-                <label for="password">كلمة المرور:</label>
+                <label for="password">كلمة المرور</label>
                 <input type="password" id="password" required>
             </div>
+            
             <button type="submit" class="btn-login">دخول</button>
         </form>
+        
+        <div class="login-footer">
+            <p>© 2025 منصة محاميكم. جميع الحقوق محفوظة.</p>
+        </div>
     </div>
-    <script src="js/admin.js"></script>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === 'admin123') {
+                localStorage.setItem('adminAuth', 'true');
+                window.location.href = 'admin.html';
+            } else {
+                alert('كلمة المرور غير صحيحة');
+            }
+        });
+    </script>
 </body>
 </html>
