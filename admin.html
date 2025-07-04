@@ -3,248 +3,836 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - محاميكم</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>محاميكم - لوحة التحكم الإدارية</title>
+    
+    <!-- تحسينات SEO متقدمة -->
+    <meta name="description" content="لوحة التحكم الإدارية لمنصة محاميكم - إدارة الاستشارات والمحتوى">
+    <meta name="author" content="منصة محاميكم">
+    
+    <!-- الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/admin.css">
+
+    <style>
+        :root {
+            --primary: #1a3a8f;
+            --secondary: #0d6efd;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #198754;
+            --gray: #6c757d;
+            --confidential: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* شريط التنقل الإداري */
+        .admin-navbar {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .admin-logo svg {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+        
+        .admin-nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .admin-nav-links li {
+            margin: 0 10px;
+        }
+        
+        .admin-nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .admin-nav-links a:hover, .admin-nav-links a.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .admin-logout {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-logout:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* لوحة التحكم */
+        .dashboard {
+            padding: 30px 0;
+        }
+        
+        .dashboard-title {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .card-title svg {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+        
+        .card-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .card-subtitle {
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        /* إدارة المحتوى */
+        .content-management {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d2d8f;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0a58ca;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: #e0a800;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .content-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #eee;
+        }
+        
+        .content-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        
+        .edit-btn {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .edit-btn:hover {
+            background-color: #d6d8db;
+        }
+        
+        .delete-btn {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .delete-btn:hover {
+            background-color: #f5c2c7;
+        }
+        
+        .view-btn {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        .view-btn:hover {
+            background-color: #b8daff;
+        }
+        
+        /* نموذج تسجيل الدخول */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-logo .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .login-logo .logo svg {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+            fill: var(--accent);
+        }
+        
+        .login-logo .logo-sub {
+            color: var(--gray);
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.15);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #0d2d8f;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+        
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .login-panel {
+            display: block;
+        }
+        
+        /* التجاوبية */
+        @media (max-width: 768px) {
+            .admin-nav-container {
+                flex-direction: column;
+            }
+            
+            .admin-nav-links {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .admin-nav-links li {
+                margin: 5px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 25px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="admin-container">
-        <!-- الشريط الجانبي -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="admin-logo">
-                    <i class="fas fa-scale-balanced"></i>
-                    <h2>محاميكم</h2>
-                </div>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
-                    <li><a href="#header"><i class="fas fa-header"></i> الهيدر</a></li>
-                    <li><a href="#hero"><i class="fas fa-image"></i> البانر</a></li>
-                    <li><a href="#services"><i class="fas fa-cogs"></i> الخدمات</a></li>
-                    <li><a href="#testimonials"><i class="fas fa-comments"></i> آراء العملاء</a></li>
-                    <li><a href="#legal-tips"><i class="fas fa-lightbulb"></i> نصائح قانونية</a></li>
-                    <li><a href="#footer"><i class="fas fa-shoe-prints"></i> الفوتر</a></li>
-                    <li><a href="#settings"><i class="fas fa-cog"></i> الإعدادات</a></li>
-                </ul>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <button id="logout-btn" class="btn-logout">
-                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                </button>
-            </div>
-        </aside>
-        
-        <!-- المحتوى الرئيسي -->
-        <main class="main-content">
-            <header class="content-header">
-                <div class="header-left">
-                    <button class="sidebar-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1>لوحة التحكم</h1>
-                </div>
-                <div class="header-right">
-                    <div class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
+    <!-- لوحة تسجيل الدخول -->
+    <div class="login-panel">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-logo">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13 13.5c0 .828-.672 1.5-1.5 1.5s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5 1.5.672 1.5 1.5zM12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                        </svg>
+                        محاميكم
                     </div>
-                    <div class="admin-profile">
-                        <div class="profile-avatar">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <span>المسؤول</span>
-                    </div>
+                    <div class="logo-sub">لوحة التحكم الإدارية</div>
                 </div>
-            </header>
-            
-            <div class="content-body">
-                <!-- لوحة التحكم -->
-                <div id="dashboard" class="section-content active">
-                    <h2>مرحبًا بك في لوحة التحكم</h2>
-                    <div class="dashboard-stats">
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>1,245</h3>
-                                <p>زيارات اليوم</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>87</h3>
-                                <p>عملاء جدد</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>32</h3>
-                                <p>استشارات جديدة</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>+24%</h3>
-                                <p>نمو الموقع</p>
-                            </div>
-                        </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم</label>
+                        <input type="text" id="username" class="form-control" placeholder="أدخل اسم المستخدم" required>
                     </div>
                     
-                    <div class="recent-activities">
-                        <h3>آخر التحديثات</h3>
-                        <ul>
-                            <li>
-                                <i class="fas fa-edit"></i>
-                                <span>تم تحديث قسم الخدمات</span>
-                                <small>منذ 2 ساعة</small>
-                            </li>
-                            <li>
-                                <i class="fas fa-plus-circle"></i>
-                                <span>تمت إضافة شهادة عميل جديد</span>
-                                <small>منذ 5 ساعات</small>
-                            </li>
-                            <li>
-                                <i class="fas fa-image"></i>
-                                <span>تم تغيير صورة البانر الرئيسي</span>
-                                <small>منذ يوم واحد</small>
-                            </li>
-                        </ul>
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" class="form-control" placeholder="أدخل كلمة المرور" required>
                     </div>
-                </div>
+                    
+                    <button type="submit" class="login-btn">تسجيل الدخول</button>
+                </form>
                 
-                <!-- تحرير الهيدر -->
-                <div id="header" class="section-content">
-                    <h2>تحرير الهيدر</h2>
-                    <div class="editor-container">
-                        <div class="editor-preview">
-                            <h4>معاينة الهيدر</h4>
-                            <div class="preview-box">
-                                <div class="preview-header">
-                                    <div class="preview-logo">
-                                        <i class="fas fa-scale-balanced"></i>
-                                        <span id="preview-logo-text">محاميكم</span>
-                                    </div>
-                                    <ul class="preview-nav">
-                                        <li><a href="#">الرئيسية</a></li>
-                                        <li><a href="#">الخدمات</a></li>
-                                        <li><a href="#">كيف يعمل</a></li>
-                                        <li><a href="#">اتصل بنا</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="editor-form">
-                            <h4>تعديل المحتوى</h4>
-                            <form class="form-section">
-                                <div class="form-group">
-                                    <label>شعار الموقع (لوجو)</label>
-                                    <div class="image-upload">
-                                        <img id="logo-preview" src="#" alt="الشعار الحالي">
-                                        <input type="file" id="logo-upload" accept="image/*">
-                                        <button type="button" class="btn-upload">تغيير الصورة</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>نص الشعار</label>
-                                    <input type="text" id="logo-text" value="محاميكم" oninput="updatePreview()">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>روابط القائمة</label>
-                                    <div class="menu-items">
-                                        <div class="menu-item">
-                                            <input type="text" value="الرئيسية" placeholder="نص الرابط">
-                                            <input type="text" value="#" placeholder="الرابط">
-                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
-                                        </div>
-                                        <div class="menu-item">
-                                            <input type="text" value="الخدمات" placeholder="نص الرابط">
-                                            <input type="text" value="#services" placeholder="الرابط">
-                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
-                                        </div>
-                                        <div class="menu-item">
-                                            <input type="text" value="اتصل بنا" placeholder="نص الرابط">
-                                            <input type="text" value="#contact" placeholder="الرابط">
-                                            <button class="btn-remove"><i class="fas fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn-add-item">إضافة رابط جديد</button>
-                                </div>
-                                
-                                <div class="form-actions">
-                                    <button type="button" class="btn-save" onclick="saveSettings()">حفظ التغييرات</button>
-                                    <button type="reset" class="btn-reset">إعادة تعيين</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- إعدادات النظام -->
-                <div id="settings" class="section-content">
-                    <h2>إعدادات النظام</h2>
-                    <div class="settings-container">
-                        <div class="settings-tabs">
-                            <button class="tab-btn active">عام</button>
-                            <button class="tab-btn">المستخدمين</button>
-                            <button class="tab-btn">الأمان</button>
-                        </div>
-                        
-                        <div class="settings-content">
-                            <form class="form-section">
-                                <div class="form-group">
-                                    <label>اسم الموقع</label>
-                                    <input type="text" value="محاميكم">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>وصف الموقع</label>
-                                    <textarea>استشارات قانونية فورية من محامين متخصصين في العراق. حلول قانونية في العقارات، الأسرة، العمل. متاح 24 ساعة طوال الأسبوع.</textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>وضع الصيانة</label>
-                                    <div class="switch-container">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <span>غير مفعل</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-actions">
-                                    <button type="button" class="btn-save">حفظ الإعدادات</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="login-footer">
+                    <p>تواصل مع الدعم الفني في حالة نسيان كلمة المرور</p>
                 </div>
             </div>
-            
-            <footer class="content-footer">
-                <p>نظام إدارة موقع محاميكم © 2025 - الإصدار 2.0</p>
-            </footer>
-        </main>
+        </div>
     </div>
     
-    <script src="js/admin.js"></script>
+    <!-- لوحة التحكم الإدارية -->
+    <div class="admin-panel">
+        <!-- شريط التنقل الإداري -->
+        <nav class="admin-navbar">
+            <div class="container admin-nav-container">
+                <a href="#" class="admin-logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 13.5c0 .828-.672 1.5-1.5 1.5s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5 1.5.672 1.5 1.5zM12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                    </svg>
+                    لوحة تحكم محاميكم
+                </a>
+                
+                <ul class="admin-nav-links">
+                    <li><a href="#" class="active">الرئيسية</a></li>
+                    <li><a href="#">الاستشارات</a></li>
+                    <li><a href="#">المستخدمين</a></li>
+                    <li><a href="#">المحتوى</a></li>
+                    <li><a href="#">الإحصائيات</a></li>
+                </ul>
+                
+                <button class="admin-logout" id="logoutBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </nav>
+        
+        <!-- لوحة التحكم -->
+        <div class="dashboard">
+            <div class="container">
+                <div class="dashboard-title">
+                    <h1>مرحباً بك في لوحة التحكم</h1>
+                    <div>آخر تحديث: <span id="currentDate">5 يوليو 2025</span></div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            الاستشارات الجديدة
+                        </div>
+                        <div class="card-value">24</div>
+                        <div class="card-subtitle">+5 منذ آخر زيارة</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            المستخدمون المسجلون
+                        </div>
+                        <div class="card-value">1,842</div>
+                        <div class="card-subtitle">+32 هذا الأسبوع</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            المقالات المنشورة
+                        </div>
+                        <div class="card-value">78</div>
+                        <div class="card-subtitle">آخر تحديث: اليوم</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            معدل الرد
+                        </div>
+                        <div class="card-value">92%</div>
+                        <div class="card-subtitle">+2% عن الشهر الماضي</div>
+                    </div>
+                </div>
+                
+                <!-- إدارة الاستشارات -->
+                <div class="content-management">
+                    <div class="section-header">
+                        <h2>الاستشارات الواردة</h2>
+                        <button class="btn btn-primary">استشارة جديدة</button>
+                    </div>
+                    
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الاستشارة</th>
+                                <th>الاسم</th>
+                                <th>التصنيف</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#2458</td>
+                                <td>علي حسن</td>
+                                <td>قانون عقاري</td>
+                                <td>4 يوليو 2025</td>
+                                <td><span class="status-badge status-pending">قيد المراجعة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view-btn">عرض</button>
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#2457</td>
+                                <td>ليلى عبد الله</td>
+                                <td>قانون أسرة</td>
+                                <td>3 يوليو 2025</td>
+                                <td><span class="status-badge status-completed">مكتملة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view-btn">عرض</button>
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#2456</td>
+                                <td>محمد كاظم</td>
+                                <td>قانون عمل</td>
+                                <td>3 يوليو 2025</td>
+                                <td><span class="status-badge status-pending">قيد المراجعة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view-btn">عرض</button>
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#2455</td>
+                                <td>زهراء أحمد</td>
+                                <td>قانون تجاري</td>
+                                <td>2 يوليو 2025</td>
+                                <td><span class="status-badge status-rejected">ملغاة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view-btn">عرض</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#2454</td>
+                                <td>حسين عباس</td>
+                                <td>قانون عقاري</td>
+                                <td>1 يوليو 2025</td>
+                                <td><span class="status-badge status-completed">مكتملة</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn view-btn">عرض</button>
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- إدارة المحتوى -->
+                <div class="content-management">
+                    <div class="section-header">
+                        <h2>إدارة المقالات والنصائح</h2>
+                        <button class="btn btn-secondary">مقال جديد</button>
+                    </div>
+                    
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>العنوان</th>
+                                <th>التصنيف</th>
+                                <th>تاريخ النشر</th>
+                                <th>المشاهدات</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>نصائح عند توقيع العقود</td>
+                                <td>نصائح قانونية</td>
+                                <td>2 يوليو 2025</td>
+                                <td>1,842</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>حقوقك في قضايا العمل</td>
+                                <td>قانون العمل</td>
+                                <td>29 يونيو 2025</td>
+                                <td>2,451</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>حماية حقوقك العقارية</td>
+                                <td>قانون عقاري</td>
+                                <td>25 يونيو 2025</td>
+                                <td>3,127</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>دليل الميراث في القانون العراقي</td>
+                                <td>قانون الأسرة</td>
+                                <td>20 يونيو 2025</td>
+                                <td>4,562</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>كيفية التعامل مع المخالفات المرورية</td>
+                                <td>قانون جزائي</td>
+                                <td>15 يونيو 2025</td>
+                                <td>2,987</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn edit-btn">تعديل</button>
+                                        <button class="action-btn delete-btn">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تاريخ اليوم
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('ar-IQ', options);
+        
+        // نظام تسجيل الدخول
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // في التطبيق الحقيقي، هنا سيتم التحقق من بيانات المستخدم مع الخادم
+            if (username === 'admin' && password === 'admin123') {
+                document.querySelector('.login-panel').style.display = 'none';
+                document.querySelector('.admin-panel').style.display = 'block';
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة!');
+            }
+        });
+        
+        // زر تسجيل الخروج
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            document.querySelector('.login-panel').style.display = 'block';
+            document.querySelector('.admin-panel').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+        
+        // إضافة تأثير للبطاقات عند التمرير
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // تنعيم التمرير عند النقر على الروابط
+        document.querySelectorAll('.admin-nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
