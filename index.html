@@ -3,10 +3,1292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاميكم</title>
-    <script>window.location.href = "login.html"</script>
+    <title>محاميكم - الاستشارات القانونية الأولى في العراق | استشارات قانونية فورية</title>
+    
+    <!-- تحسينات SEO متقدمة -->
+    <meta name="description" content="استشارات قانونية فورية من محامين متخصصين في العراق. حلول قانونية في العقارات، الأسرة، العمل. متاح 24 ساعة طوال الأسبوع.">
+    <meta name="keywords" content="محامي في العراق, استشارة قانونية, قانون عراقي, محامي اونلاين, استشارة فورية, قانون عقاري, قانون أسرة, قانون عمل">
+    <meta name="author" content="منصة محاميكم">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://mohamyiq.com/">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="محاميكم - الاستشارات القانونية الأولى في العراق">
+    <meta property="og:description" content="استشارات قانونية فورية من محامين متخصصين في العراق. حلول في العقارات، الأسرة، العمل. سرية كاملة.">
+    <meta property="og:url" content="https://mohamyiq.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mohamyiq.com/images/og-image.jpg" width="1200" height="630">
+    <meta property="og:locale" content="ar_IQ">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="محاميكم - الاستشارات القانونية الأولى في العراق">
+    <meta name="twitter:description" content="استشارات قانونية فورية من محامين متخصصين في العراق. حلول في العقارات، الأسرة، العمل. متاح 24/7.">
+    <meta name="twitter:image" content="https://mohamyiq.com/images/twitter-card.jpg">
+    
+    <!-- تحميل الخطوط بشكل غير متزامن -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"></noscript>
+
+    <!-- CSS المضمن للجزء العلوي -->
+    <style>
+        :root {
+            --primary: #1a3a8f;
+            --secondary: #0d6efd;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #198754;
+            --gray: #6c757d;
+            --confidential: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* شريط التنقل */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo svg {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+        
+        .logo-sub {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 700;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: transparent;
+            color: var(--dark);
+        }
+        
+        /* القسم البطولي */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .confidential-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 30px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .confidential-badge svg {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            fill: var(--confidential);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .hero-buttons .btn {
+            min-width: 180px;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 50%;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        /* خدماتنا */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            height: 200px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .service-icon svg {
+            width: 64px;
+            height: 64px;
+            fill: white;
+        }
+        
+        .service-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .service-content ul {
+            list-style: none;
+            margin: 20px 0;
+            flex: 1;
+        }
+        
+        .service-content li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .service-content li svg {
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+            fill: var(--success);
+            margin-top: 5px;
+        }
+        
+        .service-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .service-buttons .btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* كيف يعمل */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .step-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .consultation-types {
+            background: rgba(13, 110, 253, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .consultation-type {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .consultation-type svg {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            fill: var(--success);
+        }
+        
+        /* آراء العملاء */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d6efd 0%, #1a3a8f 100%);
+            color: white;
+        }
+        
+        .testimonials .section-title h2 {
+            color: white;
+        }
+        
+        .testimonials .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+        }
+        
+        .client-avatar svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--dark);
+        }
+        
+        .client-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .client-info p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .rating {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        .rating svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        
+        /* نصائح قانونية */
+        .legal-tips {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tip-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-header svg {
+            margin-left: 15px;
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
+        .tip-content {
+            padding: 25px;
+        }
+        
+        .tip-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .tip-footer {
+            padding: 0 25px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .social-link svg {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+        
+        .social-link:hover svg {
+            transform: translateX(5px);
+        }
+        
+        /* تذييل الصفحة */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h4 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ced4da;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-right: 5px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info svg {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+        }
+        
+        /* التجاوبية */
+        @media (max-width: 992px) {
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+            
+            .nav-container {
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-buttons {
+                margin-top: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step-card {
+                min-width: 100%;
+            }
+            
+            .service-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .service-icon {
+                height: 150px;
+            }
+            
+            .service-icon svg {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .nav-links li {
+                margin: 0 8px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- سيتم التوجيه تلقائياً -->
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 13.5c0 .828-.672 1.5-1.5 1.5s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5 1.5.672 1.5 1.5zM12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                    </svg>
+                    محاميكم
+                </a>
+                <div class="logo-sub">MohamyCom</div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#how-it-works">كيف تعمل</a></li>
+                <li><a href="#testimonials">آراء العملاء</a></li>
+                <li><a href="#legal-tips">نصائح قانونية</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="https://t.me/mohamy_law_bot" class="btn btn-primary">ابدأ استشارتك</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- القسم البطولي -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>استشارات قانونية فورية من محامين متخصصين</h1>
+                <p>احصل على إجابات دقيقة لأسئلتك القانونية في دقائق معدودة، متاح 24 ساعة طوال أيام الأسبوع من أي مكان في العراق</p>
+                
+                <div class="confidential-badge">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3c-4.962 0-9 4.038-9 9s4.038 9 9 9 9-4.038 9-9-4.038-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v6h2V8zm0 8h-2v2h2v-2z"/>
+                    </svg>
+                    استشارات سرية بالكامل - لا نحتاج معلوماتك الشخصية - لا يتم نشر أي استشارة
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="https://t.me/mohamy_law_bot" class="btn btn-accent">ابدأ الاستشارة الآن</a>
+                    <a href="https://t.me/IrMoLaBot" class="btn btn-outline">احصل على استشارة فورية</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- خدماتنا -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا القانونية المتكاملة</h2>
+                <p>نقدم مجموعة واسعة من الخدمات القانونية التي تلبي احتياجاتك في مختلف المجالات</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>القانون العقاري</h3>
+                        <p>حلول قانونية متكاملة لجميع القضايا العقارية بما في ذلك البيع والشراء والمنازعات</p>
+                        
+                        <ul>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> تسجيل الملكية العقارية</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> منازعات الحدود والملكية</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> عقود البيع والشراء</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> قضايا الإيجار والاستئجار</li>
+                        </ul>
+                        
+                        <div class="service-buttons">
+                            <a href="https://t.me/IrMoLaBot" class="btn btn-outline">الاجابة الفورية</a>
+                            <a href="https://t.me/mohamy_law_bot" class="btn btn-primary">استشارات مخصصة</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>قانون الأسرة</h3>
+                        <p>حلول قانونية متكاملة لجميع القضايا العقارية بما في ذلك البيع والشراء والمنازعات</p>
+                        
+                        <ul>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> قضايا الطلاق والتفريق</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> النفقة والحضانة</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> إثبات النسب والأنكحة</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> قضايا الميراث والوصية</li>
+                        </ul>
+                        
+                        <div class="service-buttons">
+                            <a href="https://t.me/IrMoLaBot" class="btn btn-outline">الاجابة الفورية</a>
+                            <a href="https://t.me/mohamy_law_bot" class="btn btn-primary">استشارات مخصصة</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>قانون العمل</h3>
+                        <p>حلول قانونية متكاملة لجميع القضايا العقارية بما في ذلك البيع والشراء والمنازعات</p>
+                        
+                        <ul>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> منازعات العمل والفصل التعسفي</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> عقود العمل والخدمات</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> مستحقات نهاية الخدمة</li>
+                            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> قضايا التعويضات</li>
+                        </ul>
+                        
+                        <div class="service-buttons">
+                            <a href="https://t.me/IrMoLaBot" class="btn btn-outline">الاجابة الفورية</a>
+                            <a href="https://t.me/mohamy_law_bot" class="btn btn-primary">استشارات مخصصة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- كيف يعمل -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>كيف تعمل منصة محاميكم؟</h2>
+                <p>ثلاث خطوات بسيطة تفصلك عن الحصول على استشارة قانونية متكاملة</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>ابدأ استشارتك</h3>
+                    <p>صف مشكلتك القانونية بشكل مفصل وأرفق المستندات اللازمة</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>نوع الاستشارة</h3>
+                    <p>اختر نوع الاستشارة المناسب لك من الخيارات المتاحة</p>
+                    
+                    <div class="consultation-types">
+                        <div class="consultation-type">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12 17c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm1-5h-2V7h2v5z"/>
+                            </svg>
+                            <div>
+                                <strong>استشارات فورية:</strong> 
+                                <p>أسئلة مع إجابات فورية</p>
+                            </div>
+                        </div>
+                        
+                        <div class="consultation-type">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm5 16H5V5h2v2h10V5h2v14z"/>
+                            </svg>
+                            <div>
+                                <strong>استشارات مخصصة:</strong> 
+                                <p>تواصل مباشر مع محامٍ متخصص للحصول على إجابة دقيقة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>احصل على الاجابة القانونية</h3>
+                    <p>بعد اختيار نوع الاستشارة ستحصل على استشارتك الكاملة</p>
+                    
+                    <div class="confidential-badge" style="background: rgba(40, 167, 69, 0.1); color: #155724; margin-top: 20px;">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3c-4.962 0-9 4.038-9 9s4.038 9 9 9 9-4.038 9-9-4.038-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v6h2V8zm0 8h-2v2h2v-2z"/>
+                        </svg>
+                        جميع الاستشارات سرية ولا يتم مشاركة أي معلومات
+                    </div>
+                    <div class="confidential-badge" style="background: rgba(40, 167, 69, 0.1); color: #155724; margin-top: 20px;">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3c-4.962 0-9 4.038-9 9s4.038 9 9 9 9-4.038 9-9-4.038-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v6h2V8zm0 8h-2v2h2v-2z"/>
+                        </svg>
+                        سيتم حذف ذاكرة الموقع بعد انتهاء الاستشارة
+                    </div>
+                    <div class="confidential-badge" style="background: rgba(40, 167, 69, 0.1); color: #155724; margin-top: 20px;">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3c-4.962 0-9 4.038-9 9s4.038 9 9 9 9-4.038 9-9-4.038-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v6h2V8zm0 8h-2v2h2v-2z"/>
+                        </svg>
+                        لن نطلب اي معلومات شخصية (الاسم - عنوان السكن- التولد...الخ)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- نصائح قانونية -->
+    <section class="legal-tips" id="legal-tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>نصائح قانونية هامة</h2>
+                <p>أحدث النصائح والإرشادات القانونية من محامين متخصصين</p>
+            </div>
+            
+            <div class="tips-container">
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                        <h3>نصائح عند توقيع العقود</h3>
+                    </div>
+                    <div class="tip-content">
+                        <p>١. اقرأ العقد كاملاً قبل التوقيع ولا تتردد في طلب توضيح أي بند غامض<br>
+                        ٢. تأكد من هوية الطرف الثاني وصلاحيته للتوقيع<br>
+                        ٣. احتفظ بنسخة موقعة من العقد<br>
+                        ٤. استشر محامياً قبل توقيع العقود المهمة</p>
+                    </div>
+                    <div class="tip-footer">
+                        <div class="social-link">
+                            <span>المزيد على تيليجرام</span>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.48-.03c-.2.03-3.39 2.13-4.84 3.1-.48.33-.92.49-1.4.5-.47.01-1.4-.14-2.08-.5-.83-.43-1.49-.75-1.43-1.59.03-.4.5-.8 1.36-1.2 5.7-2.47 8.1-4.1 8.72-4.38.35-.15.63-.22.85-.22.2 0 .4.05.55.3.12.18.05.65.05.65z"/>
+                            </svg>
+                        </div>
+                        <span class="date">2 أيام مضت</span>
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 16v-2h2v2h-2zm-4-2H8v2h2v-2zm6-6h-2v4h2V8zm-4-2H8v2h2V6zm6-4H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H4V4h16v16z"/>
+                        </svg>
+                        <h3>حقوقك في قضايا العمل</h3>
+                    </div>
+                    <div class="tip-content">
+                        <p>١. يحق لك الحصول على عقد عمل مكتوب<br>
+                        ٢. يحق لك رفض العمل الإضافي دون موافقتك<br>
+                        ٣. يحق لك المطالبة بمكافأة نهاية الخدمة<br>
+                        ٤. يحق لك التقدم بشكوى لمحكمة العمل في حالة الفصل التعسفي</p>
+                    </div>
+                    <div class="tip-footer">
+                        <div class="social-link">
+                            <span>المزيد على فيسبوك</span>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                            </svg>
+                        </div>
+                        <span class="date">4 أيام مضت</span>
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                        <h3>حماية حقوقك العقارية</h3>
+                    </div>
+                    <div class="tip-content">
+                        <p>١. تأكد من توثيق العقد في دائرة التسجيل العقاري<br>
+                        ٢. تحقق من عدم وجود رهن أو حجز على العقار<br>
+                        ٣. احصل على وثيقة طابو حديثة قبل الشراء<br>
+                        ٤. استعن بمحامٍ متخصص لمراجعة المستندات</p>
+                    </div>
+                    <div class="tip-footer">
+                        <div class="social-link">
+                            <span>المزيد على إنستجرام</span>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.622c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.04 0 2.67.01 2.986.058 4.04.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.055.048 1.37.058 4.04.058 2.67 0 2.986-.01 4.04-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.986-.058-4.04-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.054-.048-1.37-.058-4.04-.058zm0 2.7a5.68 5.68 0 1 1 0 11.36 5.68 5.68 0 0 1 0-11.36zm0 9.375a3.695 3.695 0 1 0 0-7.39 3.695 3.695 0 0 0 0 7.39zm7.406-9.375a1.323 1.323 0 1 1-2.646 0 1.323 1.323 0 0 1 2.646 0z"/>
+                            </svg>
+                        </div>
+                        <span class="date">6 أيام مضت</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- آراء العملاء -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء عملائنا</h2>
+                <p>انطباعات وتجارب حقيقية من عملاء استفادوا من خدماتنا القانونية</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="client-info">
+                            <h4>كرار حيدر</h4>
+                            <p>مواطن</p>
+                            <div class="rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p>""استفادت هواي من الاستشارة العقارية اللي حصلت عليها من خلال المنصة. المحامي كان كلش محترف وساعدني أحل مشكلة ظلت وياي أكثر من سنة، حلّها خلال أسبوع واحد بس!"!"</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="client-info">
+                            <h4>سارة محمد</h4>
+                            <p>موظفة حكومية</p>
+                            <div class="rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 8.5l2.62 5.32 5.88.85-4.25 4.13 1 5.88L12 21.5l-5.25 2.18 1-5.88-4.25-4.13 5.88-.85L12 8.5z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"كنت أعاني من مشكلة في قضية نفقة وحضانة أولادي. المحامية التي تواصلت معها من خلال المنصة قدمت لي استشارة متكاملة وساعدتني في الحصول على حقوقي كاملة. شكراً لمحاميكم!"</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="client-info">
+                            <h4>خالد حسن</h4>
+                            <p>مهندس /قطاع خاص</p>
+                            <div class="rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"استشرت عدة محامين في قضية تعويض بعد فصلي التعسفي من العمل، ومن خلال منصة محاميكم وجدت المحامي المناسب الذي ساعدني في الحصول على تعويض قيمته 15 مليون دينار. شكراً جزيلاً!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- تذييل الصفحة -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>عن محاميكم</h4>
+                    <p>منصة رائدة في تقديم الاستشارات القانونية عبر الإنترنت، تهدف إلى توفير خدمات قانونية متميزة بأسعار مناسبة للجميع في العراق.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://t.me/mohamy_law_bot" aria-label="تيليجرام">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.48-.03c-.2.03-3.39 2.13-4.84 3.1-.48.33-.92.49-1.4.5-.47.01-1.4-.14-2.08-.5-.83-.43-1.49-.75-1.43-1.59.03-.4.5-.8 1.36-1.2 5.7-2.47 8.1-4.1 8.72-4.38.35-.15.63-.22.85-.22.2 0 .4.05.55.3.12.18.05.65.05.65z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="واتساب">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.51-.5 1.8-.56 3.09-1.15 3.29-1.33.2-.19-.15-1.88-.57-2.78-.14-.38-.83-.59-1.27-.77-.36-.14-.74-.24-1.07-.24-.33 0-.54.1-.63.27-.1.17-.12.37-.63 1.13-.31.46-.52.75-.77.82-.25.08-.54.04-.75-.05-.2-.1-1.1-.4-2.1-1.27-.79-.7-1.33-1.57-1.48-1.84-.16-.27 0-.42.11-.53.12-.12.27-.32.37-.43.1-.11.12-.2.18-.33.05-.14.03-.26-.02-.41-.05-.15-.45-1.08-.62-1.47-.16-.4-.32-.34-.45-.34-.12 0-.26-.03-.39-.03-.13 0-.34.05-.52.24-.18.2-.69.67-.69 1.64s.71 1.9.81 2.03c.1.14 1.38 2.09 3.34 2.87.47.19.84.3 1.12.39.47.15.9.13 1.24.08.38-.06 1.17-.48 1.34-.94.17-.46.17-.86.12-.94-.05-.09-.22-.14-.47-.24m-4.56-9.44c-4.5 0-8.14 3.63-8.14 8.12 0 1.79.59 3.45 1.6 4.8L4.5 19.5l3.38-.9c1.28.7 2.76 1.12 4.32 1.12 4.5 0 8.13-3.63 8.13-8.12 0-4.5-3.63-8.12-8.13-8.12zm0 14.57c-1.5 0-2.92-.41-4.14-1.12l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.2-1.27-2.63-1.27-4.15 0-3.57 2.9-6.47 6.47-6.47 1.72 0 3.33.67 4.54 1.88 1.21 1.21 1.88 2.82 1.88 4.54-.01 3.58-2.9 6.47-6.47 6.47z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="فيسبوك">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="إنستجرام">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.622c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.04 0 2.67.01 2.986.058 4.04.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.055.048 1.37.058 4.04.058 2.67 0 2.986-.01 4.04-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.986-.058-4.04-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.054-.048-1.37-.058-4.04-.058zm0 2.7a5.68 5.68 0 1 1 0 11.36 5.68 5.68 0 0 1 0-11.36zm0 9.375a3.695 3.695 0 1 0 0-7.39 3.695 3.695 0 0 0 0 7.39zm7.406-9.375a1.323 1.323 0 1 1-2.646 0 1.323 1.323 0 0 1 2.646 0z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="تويتر">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#how-it-works">كيف تعمل</a></li>
+                        <li><a href="#testimonials">آراء العملاء</a></li>
+                        <li><a href="#legal-tips">نصائح قانونية</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>خدماتنا</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">القانون العقاري</a></li>
+                        <li><a href="#">قانون الأسرة</a></li>
+                        <li><a href="#">قانون العمل</a></li>
+                        <li><a href="#">القانون التجاري</a></li>
+                        <li><a href="#">القضايا الجزائية</a></li>
+                        <li><a href="#">القضايا الإدارية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <span>mohamycom@proton.me</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.48-.03c-.2.03-3.39 2.13-4.84 3.1-.48.33-.92.49-1.4.5-.47.01-1.4-.14-2.08-.5-.83-.43-1.49-.75-1.43-1.59.03-.4.5-.8 1.36-1.2 5.7-2.47 8.1-4.1 8.72-4.38.35-.15.63-.22.85-.22.2 0 .4.05.55.3.12.18.05.65.05.65z"/>
+                            </svg>
+                            <span>@mohamycom</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © منصة محاميكم 2025</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // إضافة تأثيرات تفاعلية بسيطة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تنعيم التمرير عند النقر على الروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // إضافة تأثير للبطاقات عند التمرير
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.service-card, .step-card, .testimonial-card, .tip-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
